@@ -1,0 +1,31 @@
+  <p-toast key="successToast"></p-toast>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Name:</label>
+        <input formControlName="name" type="text" placeholder="Name" [ngClass]="{'p-invalid': signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)}"/>
+        
+        <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+          <small class="p-error">Name is required</small>
+        </div>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label>Email:</label>
+        <input formControlName="email" type="email" placeholder="Email" [ngClass]="{'p-invalid': signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)}"/>
+        <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+          <small class="p-error">Email is required</small>
+          <small class="p-error" *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email address</small>
+        </div>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label>Password:</label>
+        <p-password formControlName="password" placeholder="Password" [ngClass]="{'p-invalid': signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)}"></p-password>
+        <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+          <small class="p-error">Password is required</small>
+        </div>
+      </div>
+      <div class="p-field p-col-12">
+        <p-button type="submit" label="Signup" [disabled]="!signupForm.valid"></p-button>
+      </div>
+    </div>
+  </form>
